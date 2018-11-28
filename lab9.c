@@ -31,6 +31,9 @@ double findGrade( char *choices, char *key );
 int main ( )
 {
 
+	printStartupBanner();
+	printf("Just type \"ls\" and you should see full_data.csv!\n");
+
 	FILE *FileA = fopen("omr.txt", "r");
 	FILE *Out = fopen("full_data.csv", "w");
 
@@ -65,6 +68,17 @@ int main ( )
 
 }
 
+/*
+ * Function:	findName ( )
+ * Programmer: 	Braeden Trautz
+ * Date:	28 November 2018
+ * Inputs:	int a		-	the id for the student you are finding the name of
+ * Outputs:	* None *
+ * Globals:	NAME_LEN	-	max name length
+ *		NUM_QS		-	number of questions each student answers
+ * Returns:	char *s		-	the concatenated string containing the first and last name of the student
+ * Description: Finds the first and last names of the student associated to each ID number and returns it to main
+ */
 char *findName ( int a )
 {
 
@@ -91,6 +105,17 @@ char *findName ( int a )
 
 }
 
+/*
+ * Function:	findGrade ( )
+ * Programmer: 	Braeden Trautz
+ * Date:	28 November 2018
+ * Inputs:	char *choices	-	a string of NUM_QS length containing the question answers submitted by a student
+ *		char *key	-	a string of NUM_QS length containing the correct answers to all questions. a "perfect test"
+ * Outputs:	* None *
+ * Globals:	NUM_QS		-	the number of questions each student answers
+ * Returns:	double grade	-	final grade in percentage of the student
+ * Description:	Grades a student's answers in a percentage form
+ */
 double findGrade ( char *choices, char *key )
 {
 
@@ -102,9 +127,10 @@ double findGrade ( char *choices, char *key )
 		if ( choices[i] != key[i] )
 			numRight--;
 	}
+
 	grade = (double) numRight / (double) NUM_QS;
 	grade = grade * 100;
-//	printf("Grade: %5.2lf\n", grade);
+
 	return grade;
 
 }
